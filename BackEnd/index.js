@@ -1,7 +1,7 @@
 require("dotenv").config();
 // server.js
 const express = require("express");
-const morgan = require("morgan");
+const logger = require("morgan");
 const cors = require("cors");
 const server = express();
 
@@ -9,13 +9,18 @@ const server = express();
 const authRouter = require("./routers/authRouter");
 
 // custom server middleware
-server.use(cors(), morgan("dev"), express.json());
+server.use(cors(), logger("combined"), express.json());
 
 // server routers config
 server.use("/api/auth", authRouter);
 
 // server listening...
 const port = process.env.PORT || 5001;
+
+server.get('/', (req, res)=>{
+
+  res.status(200).json({ message: req.headers["user-agent"]})
+})
 
 server.listen(port, () => {
   console.log(`

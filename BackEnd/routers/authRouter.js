@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 });
 
 //ANCHOR POST | create a user
-router.post("/", async (req, res) => {
+router.get("/signup", async (req, res) => {
   // const { firstName, lastName, password, notifications, email } = req.body;
   // const newUser = new User({
   //     firstName: firstName,
@@ -25,4 +25,6 @@ router.post("/", async (req, res) => {
   // }).catch(err=>{
   //     res.json({err: err})
   // })
+  res.status(200).json({ message: "It's the root from post " });
+
 });
